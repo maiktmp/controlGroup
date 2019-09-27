@@ -1,0 +1,28 @@
+
+#top {
+    position: relative;
+    background-color: #242533;
+    color: white;
+    height: 70px;
+}
+
+#bottom {
+    position: relative;
+    background-color: #242432;
+    height: 80px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #303243;
+    min-height: calc(100vh - 80px - 70px);
+    height: calc(100vh - 80px - 70px);
+}
+
+#top a:link:hover, #top a:visited:hover {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
