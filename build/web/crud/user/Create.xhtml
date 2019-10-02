@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUserLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{userController.selected.id}" title="#{bundle.CreateUserTitle_id}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{userController.selected.name}" title="#{bundle.CreateUserTitle_name}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_rfid}" for="rfid" />
+                    <h:inputText id="rfid" value="#{userController.selected.rfid}" title="#{bundle.CreateUserTitle_rfid}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_rfid}"/>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{userController.selected.username}" title="#{bundle.CreateUserTitle_username}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_username}"/>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{userController.selected.lastName}" title="#{bundle.CreateUserTitle_lastName}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_lastName}"/>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_password}"/>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_rememberToken}" for="rememberToken" />
+                    <h:inputText id="rememberToken" value="#{userController.selected.rememberToken}" title="#{bundle.CreateUserTitle_rememberToken}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{userController.selected.createdAt}" title="#{bundle.CreateUserTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{userController.selected.updatedAt}" title="#{bundle.CreateUserTitle_updatedAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_fkIdRol}" for="fkIdRol" />
+                    <h:selectOneMenu id="fkIdRol" value="#{userController.selected.fkIdRol}" title="#{bundle.CreateUserTitle_fkIdRol}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_fkIdRol}">
+                        <f:selectItems value="#{rolController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userController.create}" value="#{bundle.CreateUserSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{userController.prepareList}" value="#{bundle.CreateUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUserIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

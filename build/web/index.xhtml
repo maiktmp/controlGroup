@@ -1,49 +1,87 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head>
-    <title>Facelet Title</title>
-</h:head>
-<h:body>
-    Hello from Facelets
-    <ui:composition template="Template/templateMain.xhtml">
-        <ui:define name="content">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <ui:composition template="Template/templateMain.xhtml">
+            <ui:define name="content">
 
-            <div class="container-fluid h-100">
-                <div class="row h-100">
-                    <div class="col-4 offset-4 d-flex align-items-center h-100">
-                        <div class="card w-100 bg-dark">
-                            <div class="card-header text-center">
-                                <h5 class="text-warning">Login</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-10 offset-1">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Usuario"/>
+                <div class="container-fluid h-100">
+                    <div class="row h-100">
+                        <div class="col-4 offset-4 d-flex align-items-center h-100">
+                            <div class="card w-100 bg-dark">
+                                <div class="card-header text-center">
+                                    <h5 class="text-warning">Login</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10 offset-1">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Usuario"/>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-10 offset-1">
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Contraseña"/>
+                                        <div class="col-10 offset-1">
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Contraseña"/>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-10 offset-1">
-                                        <button class="btn btn-success btn-block">Continuar</button>
+                                        <div class="col-10 offset-1">
+                                            <button class="btn btn-success btn-block">Continuar</button>
+                                            <button class="btn btn-primary btn-block">Registrarse</button>
+                                          
+                                          
+                                              <br />
+        <h:link outcome="/crud/assistance/List" value="Show All Assistance Items"/>
+        <br />
+        <h:link outcome="/crud/day/List" value="Show All Day Items"/>
+        <br />
+        <h:link outcome="/crud/delivery/List" value="Show All Delivery Items"/>
+        <br />
+        <h:link outcome="/crud/group1/List" value="Show All Group1 Items"/>
+        <br />
+        <h:link outcome="/crud/groupHasDay/List" value="Show All GroupHasDay Items"/>
+        <br />
+        <h:link outcome="/crud/permission/List" value="Show All Permission Items"/>
+        <br />
+        <h:link outcome="/crud/rol/List" value="Show All Rol Items"/>
+        <br />
+        <h:link outcome="/crud/user/List" value="Show All User Items"/>
+        <br />
+        <h:link outcome="/crud/userHasGroup/List" value="Show All UserHasGroup Items"/>
+        <br />
+        <h:link outcome="/crud/work/List" value="Show All Work Items"/>
+        <br />
+        <h:link outcome="/crud/workSpace/List" value="Show All WorkSpace Items"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </ui:define>
-    </ui:composition>
-</h:body>
+            </ui:define>
+        </ui:composition>
+     
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+
 </html>
 

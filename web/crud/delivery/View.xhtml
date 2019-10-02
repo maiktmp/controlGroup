@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDeliveryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
+                    <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewDeliveryLabel_description}"/>
+                    <h:outputText value="#{deliveryController.selected.description}" title="#{bundle.ViewDeliveryTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewDeliveryLabel_value}"/>
+                    <h:outputText value="#{deliveryController.selected.value}" title="#{bundle.ViewDeliveryTitle_value}"/>
+                    <h:outputText value="#{bundle.ViewDeliveryLabel_fileUrl}"/>
+                    <h:outputText value="#{deliveryController.selected.fileUrl}" title="#{bundle.ViewDeliveryTitle_fileUrl}"/>
+                    <h:outputText value="#{bundle.ViewDeliveryLabel_createdAt}"/>
+                    <h:outputText value="#{deliveryController.selected.createdAt}" title="#{bundle.ViewDeliveryTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewDeliveryLabel_fkIdUserHasGroup}"/>
+                    <h:outputText value="#{deliveryController.selected.fkIdUserHasGroup}" title="#{bundle.ViewDeliveryTitle_fkIdUserHasGroup}"/>
+                    <h:outputText value="#{bundle.ViewDeliveryLabel_fkIdWork}"/>
+                    <h:outputText value="#{deliveryController.selected.fkIdWork}" title="#{bundle.ViewDeliveryTitle_fkIdWork}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{deliveryController.destroyAndView}" value="#{bundle.ViewDeliveryDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDeliveryEditLink}"/>
+                <br />
+                <h:commandLink action="#{deliveryController.prepareCreate}" value="#{bundle.ViewDeliveryCreateLink}" />
+                <br />
+                <h:commandLink action="#{deliveryController.prepareList}" value="#{bundle.ViewDeliveryShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDeliveryIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

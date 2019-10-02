@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateGroupHasDayTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateGroupHasDayLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{groupHasDayController.selected.id}" title="#{bundle.CreateGroupHasDayTitle_id}" required="true" requiredMessage="#{bundle.CreateGroupHasDayRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateGroupHasDayLabel_fkIdDay}" for="fkIdDay" />
+                    <h:selectOneMenu id="fkIdDay" value="#{groupHasDayController.selected.fkIdDay}" title="#{bundle.CreateGroupHasDayTitle_fkIdDay}" required="true" requiredMessage="#{bundle.CreateGroupHasDayRequiredMessage_fkIdDay}">
+                        <f:selectItems value="#{dayController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateGroupHasDayLabel_fkIdGroup}" for="fkIdGroup" />
+                    <h:selectOneMenu id="fkIdGroup" value="#{groupHasDayController.selected.fkIdGroup}" title="#{bundle.CreateGroupHasDayTitle_fkIdGroup}" required="true" requiredMessage="#{bundle.CreateGroupHasDayRequiredMessage_fkIdGroup}">
+                        <f:selectItems value="#{group1Controller.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{groupHasDayController.create}" value="#{bundle.CreateGroupHasDaySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{groupHasDayController.prepareList}" value="#{bundle.CreateGroupHasDayShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateGroupHasDayIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

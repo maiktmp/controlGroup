@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUserHasGroupTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUserHasGroupLabel_id}"/>
+                    <h:outputText value="#{userHasGroupController.selected.id}" title="#{bundle.ViewUserHasGroupTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewUserHasGroupLabel_createdAt}"/>
+                    <h:outputText value="#{userHasGroupController.selected.createdAt}" title="#{bundle.ViewUserHasGroupTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUserHasGroupLabel_updatedAt}"/>
+                    <h:outputText value="#{userHasGroupController.selected.updatedAt}" title="#{bundle.ViewUserHasGroupTitle_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUserHasGroupLabel_fkIdGroup}"/>
+                    <h:outputText value="#{userHasGroupController.selected.fkIdGroup}" title="#{bundle.ViewUserHasGroupTitle_fkIdGroup}"/>
+                    <h:outputText value="#{bundle.ViewUserHasGroupLabel_fkIdPermission}"/>
+                    <h:outputText value="#{userHasGroupController.selected.fkIdPermission}" title="#{bundle.ViewUserHasGroupTitle_fkIdPermission}"/>
+                    <h:outputText value="#{bundle.ViewUserHasGroupLabel_fkIdUser}"/>
+                    <h:outputText value="#{userHasGroupController.selected.fkIdUser}" title="#{bundle.ViewUserHasGroupTitle_fkIdUser}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userHasGroupController.destroyAndView}" value="#{bundle.ViewUserHasGroupDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUserHasGroupEditLink}"/>
+                <br />
+                <h:commandLink action="#{userHasGroupController.prepareCreate}" value="#{bundle.ViewUserHasGroupCreateLink}" />
+                <br />
+                <h:commandLink action="#{userHasGroupController.prepareList}" value="#{bundle.ViewUserHasGroupShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUserHasGroupIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

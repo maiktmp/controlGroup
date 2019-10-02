@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditWorkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditWorkLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{workController.selected.id}" title="#{bundle.EditWorkTitle_id}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditWorkLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{workController.selected.name}" title="#{bundle.EditWorkTitle_name}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditWorkLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{workController.selected.description}" title="#{bundle.EditWorkTitle_description}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.EditWorkLabel_value}" for="value" />
+                    <h:inputText id="value" value="#{workController.selected.value}" title="#{bundle.EditWorkTitle_value}" />
+                    <h:outputLabel value="#{bundle.EditWorkLabel_dateLimit}" for="dateLimit" />
+                    <h:inputText id="dateLimit" value="#{workController.selected.dateLimit}" title="#{bundle.EditWorkTitle_dateLimit}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditWorkLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{workController.selected.createdAt}" title="#{bundle.EditWorkTitle_createdAt}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditWorkLabel_fkIdWorkSpace}" for="fkIdWorkSpace" />
+                    <h:selectOneMenu id="fkIdWorkSpace" value="#{workController.selected.fkIdWorkSpace}" title="#{bundle.EditWorkTitle_fkIdWorkSpace}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_fkIdWorkSpace}">
+                        <f:selectItems value="#{workSpaceController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{workController.update}" value="#{bundle.EditWorkSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditWorkViewLink}"/>
+                <br />
+                <h:commandLink action="#{workController.prepareList}" value="#{bundle.EditWorkShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditWorkIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDeliveryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDeliveryLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{deliveryController.selected.id}" title="#{bundle.CreateDeliveryTitle_id}" required="true" requiredMessage="#{bundle.CreateDeliveryRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateDeliveryLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{deliveryController.selected.description}" title="#{bundle.CreateDeliveryTitle_description}" required="true" requiredMessage="#{bundle.CreateDeliveryRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.CreateDeliveryLabel_value}" for="value" />
+                    <h:inputText id="value" value="#{deliveryController.selected.value}" title="#{bundle.CreateDeliveryTitle_value}" />
+                    <h:outputLabel value="#{bundle.CreateDeliveryLabel_fileUrl}" for="fileUrl" />
+                    <h:inputTextarea rows="4" cols="30" id="fileUrl" value="#{deliveryController.selected.fileUrl}" title="#{bundle.CreateDeliveryTitle_fileUrl}" />
+                    <h:outputLabel value="#{bundle.CreateDeliveryLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{deliveryController.selected.createdAt}" title="#{bundle.CreateDeliveryTitle_createdAt}" required="true" requiredMessage="#{bundle.CreateDeliveryRequiredMessage_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDeliveryLabel_fkIdUserHasGroup}" for="fkIdUserHasGroup" />
+                    <h:selectOneMenu id="fkIdUserHasGroup" value="#{deliveryController.selected.fkIdUserHasGroup}" title="#{bundle.CreateDeliveryTitle_fkIdUserHasGroup}" required="true" requiredMessage="#{bundle.CreateDeliveryRequiredMessage_fkIdUserHasGroup}">
+                        <f:selectItems value="#{userHasGroupController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDeliveryLabel_fkIdWork}" for="fkIdWork" />
+                    <h:selectOneMenu id="fkIdWork" value="#{deliveryController.selected.fkIdWork}" title="#{bundle.CreateDeliveryTitle_fkIdWork}" required="true" requiredMessage="#{bundle.CreateDeliveryRequiredMessage_fkIdWork}">
+                        <f:selectItems value="#{workController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{deliveryController.create}" value="#{bundle.CreateDeliverySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{deliveryController.prepareList}" value="#{bundle.CreateDeliveryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDeliveryIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

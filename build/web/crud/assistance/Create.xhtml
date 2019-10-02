@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAssistanceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAssistanceLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{assistanceController.selected.id}" title="#{bundle.CreateAssistanceTitle_id}" required="true" requiredMessage="#{bundle.CreateAssistanceRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAssistanceLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{assistanceController.selected.createdAt}" title="#{bundle.CreateAssistanceTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAssistanceLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{assistanceController.selected.updatedAt}" title="#{bundle.CreateAssistanceTitle_updatedAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAssistanceLabel_fkIdUserHasGroup}" for="fkIdUserHasGroup" />
+                    <h:selectOneMenu id="fkIdUserHasGroup" value="#{assistanceController.selected.fkIdUserHasGroup}" title="#{bundle.CreateAssistanceTitle_fkIdUserHasGroup}" required="true" requiredMessage="#{bundle.CreateAssistanceRequiredMessage_fkIdUserHasGroup}">
+                        <f:selectItems value="#{userHasGroupController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{assistanceController.create}" value="#{bundle.CreateAssistanceSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{assistanceController.prepareList}" value="#{bundle.CreateAssistanceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAssistanceIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewWorkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewWorkLabel_id}"/>
+                    <h:outputText value="#{workController.selected.id}" title="#{bundle.ViewWorkTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewWorkLabel_name}"/>
+                    <h:outputText value="#{workController.selected.name}" title="#{bundle.ViewWorkTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewWorkLabel_description}"/>
+                    <h:outputText value="#{workController.selected.description}" title="#{bundle.ViewWorkTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewWorkLabel_value}"/>
+                    <h:outputText value="#{workController.selected.value}" title="#{bundle.ViewWorkTitle_value}"/>
+                    <h:outputText value="#{bundle.ViewWorkLabel_dateLimit}"/>
+                    <h:outputText value="#{workController.selected.dateLimit}" title="#{bundle.ViewWorkTitle_dateLimit}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewWorkLabel_createdAt}"/>
+                    <h:outputText value="#{workController.selected.createdAt}" title="#{bundle.ViewWorkTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewWorkLabel_fkIdWorkSpace}"/>
+                    <h:outputText value="#{workController.selected.fkIdWorkSpace}" title="#{bundle.ViewWorkTitle_fkIdWorkSpace}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{workController.destroyAndView}" value="#{bundle.ViewWorkDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewWorkEditLink}"/>
+                <br />
+                <h:commandLink action="#{workController.prepareCreate}" value="#{bundle.ViewWorkCreateLink}" />
+                <br />
+                <h:commandLink action="#{workController.prepareList}" value="#{bundle.ViewWorkShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewWorkIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

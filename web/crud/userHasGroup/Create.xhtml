@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserHasGroupTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUserHasGroupLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{userHasGroupController.selected.id}" title="#{bundle.CreateUserHasGroupTitle_id}" required="true" requiredMessage="#{bundle.CreateUserHasGroupRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateUserHasGroupLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{userHasGroupController.selected.createdAt}" title="#{bundle.CreateUserHasGroupTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUserHasGroupLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{userHasGroupController.selected.updatedAt}" title="#{bundle.CreateUserHasGroupTitle_updatedAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUserHasGroupLabel_fkIdGroup}" for="fkIdGroup" />
+                    <h:selectOneMenu id="fkIdGroup" value="#{userHasGroupController.selected.fkIdGroup}" title="#{bundle.CreateUserHasGroupTitle_fkIdGroup}" required="true" requiredMessage="#{bundle.CreateUserHasGroupRequiredMessage_fkIdGroup}">
+                        <f:selectItems value="#{group1Controller.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateUserHasGroupLabel_fkIdPermission}" for="fkIdPermission" />
+                    <h:selectOneMenu id="fkIdPermission" value="#{userHasGroupController.selected.fkIdPermission}" title="#{bundle.CreateUserHasGroupTitle_fkIdPermission}" required="true" requiredMessage="#{bundle.CreateUserHasGroupRequiredMessage_fkIdPermission}">
+                        <f:selectItems value="#{permissionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateUserHasGroupLabel_fkIdUser}" for="fkIdUser" />
+                    <h:selectOneMenu id="fkIdUser" value="#{userHasGroupController.selected.fkIdUser}" title="#{bundle.CreateUserHasGroupTitle_fkIdUser}" required="true" requiredMessage="#{bundle.CreateUserHasGroupRequiredMessage_fkIdUser}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userHasGroupController.create}" value="#{bundle.CreateUserHasGroupSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{userHasGroupController.prepareList}" value="#{bundle.CreateUserHasGroupShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUserHasGroupIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

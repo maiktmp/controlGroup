@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditWorkSpaceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditWorkSpaceLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{workSpaceController.selected.id}" title="#{bundle.EditWorkSpaceTitle_id}" required="true" requiredMessage="#{bundle.EditWorkSpaceRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditWorkSpaceLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{workSpaceController.selected.name}" title="#{bundle.EditWorkSpaceTitle_name}" required="true" requiredMessage="#{bundle.EditWorkSpaceRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditWorkSpaceLabel_fkIdGroup}" for="fkIdGroup" />
+                    <h:selectOneMenu id="fkIdGroup" value="#{workSpaceController.selected.fkIdGroup}" title="#{bundle.EditWorkSpaceTitle_fkIdGroup}" required="true" requiredMessage="#{bundle.EditWorkSpaceRequiredMessage_fkIdGroup}">
+                        <f:selectItems value="#{group1Controller.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditWorkSpaceLabel_fkIdParentWorkSpace}" for="fkIdParentWorkSpace" />
+                    <h:selectOneMenu id="fkIdParentWorkSpace" value="#{workSpaceController.selected.fkIdParentWorkSpace}" title="#{bundle.EditWorkSpaceTitle_fkIdParentWorkSpace}" required="true" requiredMessage="#{bundle.EditWorkSpaceRequiredMessage_fkIdParentWorkSpace}">
+                        <f:selectItems value="#{workSpaceController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{workSpaceController.update}" value="#{bundle.EditWorkSpaceSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditWorkSpaceViewLink}"/>
+                <br />
+                <h:commandLink action="#{workSpaceController.prepareList}" value="#{bundle.EditWorkSpaceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditWorkSpaceIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
