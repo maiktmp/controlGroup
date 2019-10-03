@@ -16,18 +16,6 @@ h1 {
     color: #D20005;
 }
 
-a:link, a:visited {
-    color: #045491;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-a:link:hover, a:visited:hover {
-    color: #045491;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
 .color-pink {
     color: #ff507d;
 }
@@ -44,3 +32,19 @@ a:link:hover, a:visited:hover {
     border-bottom: #d5dced solid 1px;
 }
 
+.form-group label {
+    color: #d1cecb;
+}
+
+.form-control:focus {
+    background-color: #303243 !important;
+}
+
+.form-control {
+    color: #ffffff !important;
+    background-color: #303243 !important;
+}
+
+thead {
+    background-color: #409c5c;
+}

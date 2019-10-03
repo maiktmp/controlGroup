@@ -3,8 +3,10 @@ package com.controller;
 import com.entities.User;
 import com.controller.util.JsfUtil;
 import com.controller.util.PaginationHelper;
+import com.entities.Rol;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -25,6 +27,8 @@ public class UserController implements Serializable {
     private DataModel items = null;
     @EJB
     private com.controller.UserFacade ejbFacade;
+    @EJB
+    private com.controller.RolFacade rolFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -75,11 +79,18 @@ public class UserController implements Serializable {
     public String prepareCreate() {
         current = new User();
         selectedItemIndex = -1;
-        return "Create";
+        return "/crud/user/Create";
     }
 
     public String create() {
         try {
+            Rol rol = (Rol)this.rolFacade.find(2);
+            current.setFkIdRol(rol);
+            current.setCreatedAt(new Date());
+            current.setUpdatedAt(new Date());
+            current.setRfid("none");
+            current.setRememberToken("none");
+            
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
