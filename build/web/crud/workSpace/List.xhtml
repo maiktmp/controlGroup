@@ -6,7 +6,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="/Template/templateMain.xhtml">
+<ui:composition template="/Template_side/templateMain.xhtml">
     <ui:define name="title">
         <h:outputText value="#{bundle.ListWorkSpaceTitle}"></h:outputText>
     </ui:define>
@@ -42,12 +42,7 @@
                                                         cellpadding="2" cellspacing="0"
                                                         rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all"
                                                         style="border:solid 1px">
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText value="#{bundle.ListWorkSpaceTitle_id}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.id}"/>
-                                                    </h:column>
+                                           
                                                     <h:column>
                                                         <f:facet name="header">
                                                             <h:outputText value="#{bundle.ListWorkSpaceTitle_name}"/>
@@ -59,15 +54,9 @@
                                                             <h:outputText
                                                                     value="#{bundle.ListWorkSpaceTitle_fkIdGroup}"/>
                                                         </f:facet>
-                                                        <h:outputText value="#{item.fkIdGroup}"/>
+                                                        <h:outputText value="#{item.fkIdGroup.name}"/>
                                                     </h:column>
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText
-                                                                    value="#{bundle.ListWorkSpaceTitle_fkIdParentWorkSpace}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.fkIdParentWorkSpace}"/>
-                                                    </h:column>
+
                                                     <h:column>
                                                         <f:facet name="header">
                                                             <h:outputText value="&nbsp;"/>
@@ -84,8 +73,10 @@
                                                 </h:dataTable>
                                             </h:panelGroup>
                                             <br/>
-                                            <h:commandLink action="#{workSpaceController.prepareCreate}"
-                                                           value="#{bundle.ListWorkSpaceCreateLink}"/>
+                                            <h:commandLink
+                                                          class="btn-create"
+                                                          action="#{workSpaceController.prepareCreate}"
+                                                           value="+"/>
                                             <br/>
                                             <br/>
                                             <h:link outcome="/index" value="#{bundle.ListWorkSpaceIndexLink}"/>
@@ -98,8 +89,15 @@
                 </div>
             </div>
         </div>
-    </div>
-</ui:define>
+    </ui:define>
 </ui:composition>
 
-        </html>
+    
+                <h:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText
+                                                                    value="#{bundle.ListWorkSpaceTitle_fkIdParentWorkSpace}"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.fkIdParentWorkSpace}"/>
+                                                    </h:column>
+</html>

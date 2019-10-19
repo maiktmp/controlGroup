@@ -6,7 +6,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="/Template/templateMain.xhtml">
+<ui:composition template="/Template_side/templateMain.xhtml">
     <ui:define name="title">
         <h:outputText value="#{bundle.ListGroup1Title}"></h:outputText>
     </ui:define>
@@ -38,7 +38,6 @@
                                                                    value="#{bundle.Next} #{group1Controller.pagination.pageSize}"
                                                                    rendered="#{group1Controller.pagination.hasNextPage}"/>&nbsp;
                                                     <h:dataTable
-                                                            class="table table-stripped table-dark table-bordered table-hover table-sm"
                                                             class="table table-stripped table-dark table-bordered table-hover table-sm"
                                                             value="#{group1Controller.items}" var="item"
                                                             rowClasses="jsfcrud_odd_row,jsfcrud_even_row"
@@ -89,10 +88,12 @@
                                                     </h:dataTable>
                                                 </h:panelGroup>
                                                 <br/>
-                                                <h:commandLink action="#{group1Controller.prepareCreate}"
-                                                               value="#{bundle.ListGroup1CreateLink}"/>
-                                                <br/>
-                                                <br/>
+                                                <h:commandLink
+                                                        class="btn-create"
+                                                        action="#{group1Controller.prepareCreate}"
+                                                        value="+"/>
+
+
                                                 <h:link outcome="/index" value="#{bundle.ListGroup1IndexLink}"/>
                                             </h:form>
                                         </div>

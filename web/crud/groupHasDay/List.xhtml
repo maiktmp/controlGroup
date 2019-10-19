@@ -5,57 +5,70 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/Template/templateMain.xhtml">
+    <ui:composition template="/Template_side/templateMain.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListGroupHasDayTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListGroupHasDayEmpty}" rendered="#{groupHasDayController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{groupHasDayController.items.rowCount > 0}">
-                    <h:outputText value="#{groupHasDayController.pagination.pageFirstItem + 1}..#{groupHasDayController.pagination.pageLastItem + 1}/#{groupHasDayController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{groupHasDayController.previous}" value="#{bundle.Previous} #{groupHasDayController.pagination.pageSize}" rendered="#{groupHasDayController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{groupHasDayController.next}" value="#{bundle.Next} #{groupHasDayController.pagination.pageSize}" rendered="#{groupHasDayController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable class="table table-stripped table-dark table-bordered table-hover table-sm" value="#{groupHasDayController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGroupHasDayTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGroupHasDayTitle_fkIdDay}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkIdDay}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGroupHasDayTitle_fkIdGroup}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkIdGroup}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{groupHasDayController.prepareView}" value="#{bundle.ListGroupHasDayViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{groupHasDayController.prepareEdit}" value="#{bundle.ListGroupHasDayEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{groupHasDayController.destroy}" value="#{bundle.ListGroupHasDayDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{groupHasDayController.prepareCreate}" value="#{bundle.ListGroupHasDayCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListGroupHasDayIndexLink}"/>
-            </h:form>
+            <div class="container-fluid py-3">
+                <div class="row">
+                    <div class="col-10 offset-1">
+                        <div class="card bg-dark">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <h2 class="color-pink">Grupos y sus días.</h2>
+                                        <div class="col-12">
+                                            <div class="table-responsive">
+                                                <h:form styleClass="jsfcrud_list_form">
+                                                    <h:panelGroup id="messagePanel" layout="block">
+                                                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                                                    </h:panelGroup>
+                                                    <h:outputText escape="false" value="#{bundle.ListGroupHasDayEmpty}" rendered="#{groupHasDayController.items.rowCount == 0}"/>
+                                                    <h:panelGroup rendered="#{groupHasDayController.items.rowCount > 0}">
+                                                        <h:outputText value="#{groupHasDayController.pagination.pageFirstItem + 1}..#{groupHasDayController.pagination.pageLastItem + 1}/#{groupHasDayController.pagination.itemsCount}"/>&nbsp;
+                                                        <h:commandLink action="#{groupHasDayController.previous}" value="#{bundle.Previous} #{groupHasDayController.pagination.pageSize}" rendered="#{groupHasDayController.pagination.hasPreviousPage}"/>&nbsp;
+                                                        <h:commandLink action="#{groupHasDayController.next}" value="#{bundle.Next} #{groupHasDayController.pagination.pageSize}" rendered="#{groupHasDayController.pagination.hasNextPage}"/>&nbsp;
+                                                        <h:dataTable class="table table-stripped table-dark table-bordered table-hover table-sm" value="#{groupHasDayController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                                            <h:column>
+                                                                <f:facet name="header">
+                                                                    <h:outputText value="#{bundle.ListGroupHasDayTitle_fkIdGroup}"/>
+                                                                </f:facet>
+                                                                <h:outputText value="#{item.fkIdGroup.name}"/>
+                                                            </h:column>
+                                                            <h:column>
+                                                                <f:facet name="header">
+                                                                    <h:outputText value="#{bundle.ListGroupHasDayTitle_fkIdDay}"/>
+                                                                </f:facet>
+                                                                <h:outputText value="#{item.fkIdDay.name}"/>
+                                                            </h:column>
+                                                            <h:column>
+                                                                <f:facet name="header">
+                                                                    <h:outputText value="&nbsp;"/>
+                                                                </f:facet>
+                                                                <h:commandLink action="#{groupHasDayController.prepareView}" value="#{bundle.ListGroupHasDayViewLink}"/>
+                                                                <h:outputText value=" "/>
+                                                                <h:commandLink action="#{groupHasDayController.prepareEdit}" value="#{bundle.ListGroupHasDayEditLink}"/>
+                                                                <h:outputText value=" "/>
+                                                                <h:commandLink action="#{groupHasDayController.destroy}" value="#{bundle.ListGroupHasDayDestroyLink}"/>
+                                                            </h:column>
+                                                        </h:dataTable>
+                                                    </h:panelGroup>
+                                                    <br />
+                                                    <h:commandLink action="#{groupHasDayController.prepareCreate}" value="#{bundle.ListGroupHasDayCreateLink}"/>
+                                                    <br />
+                                                    <br />
+                                                    <h:link outcome="/index" value="#{bundle.ListGroupHasDayIndexLink}"/>
+                                                </h:form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

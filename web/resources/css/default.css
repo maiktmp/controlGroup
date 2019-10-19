@@ -48,3 +48,34 @@ h1 {
 thead {
     background-color: #409c5c;
 }
+
+.nav-link {
+    color: #ffffff;
+    font-size: 1.5em;
+}
+
+.nav-link:hover {
+    color: #ff507d;
+}
+
+.btn-create{
+    width: 50px;
+    height: 50px;
+    background-color: #409C5C;
+    color: white;
+    font-size: 2em;
+    border-radius: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -80px;
+    right: 0;
+    padding-bottom: 5px;
+}
+
+
+.btn-create:hover{
+    color: white;
+    text-decoration: none!important;
+}

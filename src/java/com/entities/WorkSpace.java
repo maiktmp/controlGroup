@@ -144,7 +144,7 @@ public class WorkSpace implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entities.WorkSpace[ id=" + id + " ]";
+        return fkIdGroup.getName() +" | "+name;
     }
     
 }

@@ -1,116 +1,117 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="/Template/templateMain.xhtml">
-    <ui:define name="title">
-        <h:outputText value="#{bundle.ListWorkTitle}"></h:outputText>
-    </ui:define>
-    <ui:define name="content">
-        <div class="container-fluid py-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card bg-dark">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <h2 class="color-pink">Trabajos</h2>
-                                    <div class="col-12">
-                                        <h:form styleClass="jsfcrud_list_form">
-                                            <h:panelGroup id="messagePanel" layout="block">
-                                                <h:messages errorStyle="color: red" infoStyle="color: green"
-                                                            layout="table"/>
-                                            </h:panelGroup>
-                                            <h:outputText escape="false" value="#{bundle.ListWorkEmpty}"
-                                                          rendered="#{workController.items.rowCount == 0}"/>
-                                            <h:panelGroup rendered="#{workController.items.rowCount > 0}">
-                                                <h:outputText
+    <ui:composition template="/Template_side/templateMain.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListWorkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <div class="container-fluid py-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card bg-dark">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <h2 class="color-pink">Tareas</h2>
+                                        <div class="col-12">
+                                            <h:form styleClass="jsfcrud_list_form">
+                                                      <h:commandLink 
+                                                               class='btn-create'
+                                                               action="#{workController.prepareCreate}"
+                                                               value="+"/>
+                                                <h:panelGroup id="messagePanel" layout="block">
+                                                    <h:messages errorStyle="color: red" infoStyle="color: green"
+                                                                layout="table"/>
+                                                </h:panelGroup>
+                                                <h:outputText escape="false" value="#{bundle.ListWorkEmpty}"
+                                                              rendered="#{workController.items.rowCount == 0}"/>
+                                                <h:panelGroup rendered="#{workController.items.rowCount > 0}">
+                                                    <h:outputText
                                                         value="#{workController.pagination.pageFirstItem + 1}..#{workController.pagination.pageLastItem + 1}/#{workController.pagination.itemsCount}"/>&nbsp;
-                                                <h:commandLink action="#{workController.previous}"
-                                                               value="#{bundle.Previous} #{workController.pagination.pageSize}"
-                                                               rendered="#{workController.pagination.hasPreviousPage}"/>&nbsp;
-                                                <h:commandLink action="#{workController.next}"
-                                                               value="#{bundle.Next} #{workController.pagination.pageSize}"
-                                                               rendered="#{workController.pagination.hasNextPage}"/>&nbsp;
-                                                <h:dataTable
+                                                    <h:commandLink action="#{workController.previous}"
+                                                                   value="#{bundle.Previous} #{workController.pagination.pageSize}"
+                                                                   rendered="#{workController.pagination.hasPreviousPage}"/>&nbsp;
+                                                    <h:commandLink action="#{workController.next}"
+                                                                   value="#{bundle.Next} #{workController.pagination.pageSize}"
+                                                                   rendered="#{workController.pagination.hasNextPage}"/>&nbsp;
+                                                    <h:dataTable
                                                         class="table table-stripped table-dark table-bordered table-hover table-sm"
                                                         value="#{workController.items}" var="item" border="0"
                                                         cellpadding="2" cellspacing="0"
                                                         rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all"
                                                         style="border:solid 1px">
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText value="#{bundle.ListWorkTitle_id}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.id}"/>
-                                                    </h:column>
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText value="#{bundle.ListWorkTitle_name}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.name}"/>
-                                                    </h:column>
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText value="#{bundle.ListWorkTitle_description}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.description}"/>
-                                                    </h:column>
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText value="#{bundle.ListWorkTitle_value}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.value}"/>
-                                                    </h:column>
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText value="#{bundle.ListWorkTitle_dateLimit}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.dateLimit}">
-                                                            <f:convertDateTime pattern="MM/dd/yyyy"/>
-                                                        </h:outputText>
-                                                    </h:column>
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText value="#{bundle.ListWorkTitle_createdAt}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.createdAt}">
-                                                            <f:convertDateTime pattern="MM/dd/yyyy"/>
-                                                        </h:outputText>
-                                                    </h:column>
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText
+                                                        <h:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="#{bundle.ListWorkTitle_id}"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.id}"/>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="#{bundle.ListWorkTitle_name}"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.name}"/>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="#{bundle.ListWorkTitle_description}"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.description}"/>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="#{bundle.ListWorkTitle_value}"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.value}"/>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="#{bundle.ListWorkTitle_dateLimit}"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.dateLimit}">
+                                                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                                                            </h:outputText>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="#{bundle.ListWorkTitle_createdAt}"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.createdAt}">
+                                                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                                                            </h:outputText>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText
                                                                     value="#{bundle.ListWorkTitle_fkIdWorkSpace}"/>
-                                                        </f:facet>
-                                                        <h:outputText value="#{item.fkIdWorkSpace}"/>
-                                                    </h:column>
-                                                    <h:column>
-                                                        <f:facet name="header">
-                                                            <h:outputText value="&nbsp;"/>
-                                                        </f:facet>
-                                                        <h:commandLink action="#{workController.prepareView}"
-                                                                       value="#{bundle.ListWorkViewLink}"/>
-                                                        <h:outputText value=" "/>
-                                                        <h:commandLink action="#{workController.prepareEdit}"
-                                                                       value="#{bundle.ListWorkEditLink}"/>
-                                                        <h:outputText value=" "/>
-                                                        <h:commandLink action="#{workController.destroy}"
-                                                                       value="#{bundle.ListWorkDestroyLink}"/>
-                                                    </h:column>
-                                                </h:dataTable>
-                                            </h:panelGroup>
-                                            <br/>
-                                            <h:commandLink action="#{workController.prepareCreate}"
-                                                           value="#{bundle.ListWorkCreateLink}"/>
-                                            <br/>
-                                            <br/>
-                                            <h:link outcome="/index" value="#{bundle.ListWorkIndexLink}"/>
-                                        </h:form>
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.fkIdWorkSpace}"/>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="&nbsp;"/>
+                                                            </f:facet>
+                                                            <h:commandLink action="#{workController.prepareView}"
+                                                                           value="#{bundle.ListWorkViewLink}"/>
+                                                            <h:outputText value=" "/>
+                                                            <h:commandLink action="#{workController.prepareEdit}"
+                                                                           value="#{bundle.ListWorkEditLink}"/>
+                                                            <h:outputText value=" "/>
+                                                            <h:commandLink action="#{workController.destroy}"
+                                                                           value="#{bundle.ListWorkDestroyLink}"/>
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                </h:panelGroup>
+                                                <br/>
+                                                <h:link outcome="/index" value="#{bundle.ListWorkIndexLink}"/>
+                                            </h:form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -118,9 +119,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</ui:define>
-</ui:composition>
+        </ui:define>
+    </ui:composition>
 
-        </html>
+</html>

@@ -202,7 +202,7 @@ public class Group implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entities.Group[ id=" + id + " ]";
+        return name;
     }
-    
+
 }

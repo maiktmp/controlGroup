@@ -27,8 +27,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "group_has_day")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "GroupHasDay.findAll", query = "SELECT g FROM GroupHasDay g")
-    , @NamedQuery(name = "GroupHasDay.findById", query = "SELECT g FROM GroupHasDay g WHERE g.id = :id")})
+    @NamedQuery(name = "GroupHasDay.findAll", query = "SELECT g FROM GroupHasDay g"),
+    @NamedQuery(name = "GroupHasDay.findById", query = "SELECT g FROM GroupHasDay g WHERE g.id = :id")})
+    
+
 public class GroupHasDay implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +45,7 @@ public class GroupHasDay implements Serializable {
     @JoinColumn(name = "fk_id_group", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Group fkIdGroup;
+    
 
     public GroupHasDay() {
     }
@@ -99,5 +102,7 @@ public class GroupHasDay implements Serializable {
     public String toString() {
         return "com.entities.GroupHasDay[ id=" + id + " ]";
     }
+    
+    
     
 }

@@ -5,6 +5,7 @@ import com.controller.util.JsfUtil;
 import com.controller.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -80,6 +81,7 @@ public class WorkController implements Serializable {
 
     public String create() {
         try {
+            current.setCreatedAt(new Date());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("WorkCreated"));
             return prepareCreate();

@@ -5,6 +5,7 @@ import com.controller.util.JsfUtil;
 import com.controller.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -80,6 +81,9 @@ public class Group1Controller implements Serializable {
 
     public String create() {
         try {
+            current.setCreatedAt(new Date());
+            current.setUpdatedAt(new Date());
+            current.setActive(true);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Group1Created"));
             return prepareCreate();

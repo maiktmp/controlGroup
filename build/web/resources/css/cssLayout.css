@@ -16,6 +16,7 @@
     position: relative;
     background-color: #303243;
     min-height: calc(100vh - 80px - 70px);
+    display:flex;
     /*height: calc(100vh - 80px - 70px);*/
 }
 
@@ -23,6 +24,13 @@
     color: black;
     font-weight: bold;
     text-decoration: underline;
+}
+
+#sidebar{
+    background-color: #242533;
+    width: 250px;
+    min-height: calc(100vh - 80px - 70px);    
+
 }
 
 
