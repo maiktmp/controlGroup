@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -60,9 +61,20 @@ public class WorkSpace implements Serializable {
     @ManyToOne(optional = false)
     private WorkSpace fkIdParentWorkSpace;
 
+    @Transient
+    private String listName;
     public WorkSpace() {
     }
 
+    public String getListName() {
+        return getName()+"|"+getFkIdGroup().getName();
+    }
+
+    public void setListName(String listName) {
+        this.listName = listName;
+    }
+
+    
     public WorkSpace(Integer id) {
         this.id = id;
     }

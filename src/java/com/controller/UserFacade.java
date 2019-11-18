@@ -6,9 +6,11 @@
 package com.controller;
 
 import com.entities.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,10 @@ public class UserFacade extends AbstractFacade<User> {
     public UserFacade() {
         super(User.class);
     }
-    
+
+    public List<User> Login(User user) {
+        Query q = this.getEntityManager().createNamedQuery("User.findByPassword");
+        q.setParameter("password", user.getPassword());
+        return q.getResultList();
+    }
 }

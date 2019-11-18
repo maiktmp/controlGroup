@@ -67,6 +67,7 @@
                                             <div class="col-10 offset-1">
 
                                                 <p:datePicker id="popup"
+                                                              value="#{workController.selected.dateLimit}"
                                                               pt:placeholder="Fecha de entrega"/>
 
                                                 <h:inputText id="value"
@@ -82,6 +83,14 @@
                                                              title="#{bundle.CreateWorkTitle_name}"
                                                              required="true"
                                                              requiredMessage="#{bundle.CreateWorkRequiredMessage_name}"/>
+                                                
+                                                            <h:selectOneMenu id="fkIdWorkSpace" 
+                                                                             class="form-control my-3"
+                                                                             value="#{workController.selected.fkIdWorkSpace}" 
+                                                                             title="#{bundle.CreateWorkTitle_fkIdWorkSpace}" 
+                                                                             required="true" requiredMessage="#{bundle.CreateWorkRequiredMessage_fkIdWorkSpace}">
+                                                                <f:selectItems value="#{workSpaceController.itemsAvailableSelectOne}"/>
+                                                            </h:selectOneMenu>
 
                                                 <p:inputTextarea rows="10"
                                                                  cols="50"

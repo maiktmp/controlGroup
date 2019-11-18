@@ -7,17 +7,20 @@ import com.entities.Rol;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 @Named("userController")
 @SessionScoped
@@ -84,13 +87,13 @@ public class UserController implements Serializable {
 
     public String create() {
         try {
-            Rol rol = (Rol)this.rolFacade.find(2);
+            Rol rol = (Rol) this.rolFacade.find(2);
             current.setFkIdRol(rol);
             current.setCreatedAt(new Date());
             current.setUpdatedAt(new Date());
             current.setRfid("none");
             current.setRememberToken("none");
-            
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
@@ -98,6 +101,22 @@ public class UserController implements Serializable {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
+    }
+
+    public String Login() {
+        try {
+            List<User> users = ejbFacade.Login(current);
+            for (User user : users) {
+                if (current.getUsername().equals(user.getUsername()) && current.getPassword().equals(user.getPassword())) {
+                    User.getSession().setAttribute("USER", user);
+                    return "/crud/group1/List";
+                }
+            }
+            JsfUtil.addErrorMessage("Usuario | Contraseña incorrectos");
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, "Error al iniciar sesión");
+        }
+        return null;
     }
 
     public String prepareEdit() {

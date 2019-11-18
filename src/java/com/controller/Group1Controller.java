@@ -3,6 +3,7 @@ package com.controller;
 import com.entities.Group;
 import com.controller.util.JsfUtil;
 import com.controller.util.PaginationHelper;
+import com.entities.User;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,12 +12,14 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 @Named("group1Controller")
 @SessionScoped
@@ -46,16 +49,27 @@ public class Group1Controller implements Serializable {
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            ExternalContext ec = context.getExternalContext();
+            HttpSession session = (HttpSession) ec.getSession(false);
+            
             pagination = new PaginationHelper(10) {
 
                 @Override
                 public int getItemsCount() {
+                     if (((User)session.getAttribute("USER")).getFkIdRol().getId() == 2){
+                        return getFacade().listByUser(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}).size();           
+                    }
                     return getFacade().count();
                 }
 
                 @Override
                 public DataModel createPageDataModel() {
+                    if (((User)session.getAttribute("USER")).getFkIdRol().getId() == 2){
+                        return new ListDataModel(getFacade().listByUser(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));           
+                    }
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+
                 }
             };
         }
@@ -181,6 +195,11 @@ public class Group1Controller implements Serializable {
         getPagination().previousPage();
         recreateModel();
         return "List";
+    }
+    
+    public String filterWork(int groupId){
+                    
+        return "/crud/work/List";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {

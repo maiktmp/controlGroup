@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Work.findAll", query = "SELECT w FROM Work w")
+    , @NamedQuery(name = "Work.findAllByGroup", query = "SELECT w FROM Work w WHERE w.fkIdWorkSpace.id IN(SELECT ws.id FROM WorkSpace ws WHERE ws.fkIdGroup.id = :groupId)")
     , @NamedQuery(name = "Work.findById", query = "SELECT w FROM Work w WHERE w.id = :id")
     , @NamedQuery(name = "Work.findByName", query = "SELECT w FROM Work w WHERE w.name = :name")
     , @NamedQuery(name = "Work.findByDescription", query = "SELECT w FROM Work w WHERE w.description = :description")

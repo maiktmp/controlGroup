@@ -17,6 +17,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 
 @Named("workController")
 @SessionScoped
@@ -45,16 +46,28 @@ public class WorkController implements Serializable {
     }
 
     public PaginationHelper getPagination() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+                .getRequest();
+        String groupId = request.getParameter("groupId");
+        if (groupId != null) {
+            pagination = null;
+        }
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
 
                 @Override
                 public int getItemsCount() {
+                    if (groupId != null) {
+                        return getFacade().findByGroup(groupId, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}).size();
+                    }
                     return getFacade().count();
                 }
 
                 @Override
                 public DataModel createPageDataModel() {
+                    if (groupId != null) {
+                        return new ListDataModel(getFacade().findByGroup(groupId, new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    }
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
@@ -155,6 +168,15 @@ public class WorkController implements Serializable {
     }
 
     public DataModel getItems() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .getRequest();
+        String groupId = request.getParameter("groupId");
+        if (groupId != null) {
+            items = null;
+        }
+        
         if (items == null) {
             items = getPagination().createPageDataModel();
         }

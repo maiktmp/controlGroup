@@ -22,33 +22,56 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-10 offset-1">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Usuario"/>
+                                        <div class="col-12">
+                                            <div class="alert ">
+                                                <h:panelGroup id="messagePanel" layout="block">
+                                                    <h:messages errorStyle="color: red" infoStyle="color: green"
+                                                                layout="table"/>
+                                                </h:panelGroup>
                                             </div>
-                                        </div>
+                                            <h:form>
+                                                <div class="col-10 offset-1">
+                                                    <div class="form-group">
+                                                        <h:outputLabel value="#{bundle.CreateUserLabel_username}"
+                                                                       for="username"/>
+                                                        <h:inputText id="username"
+                                                                     class="form-control"
+                                                                     value="#{userController.selected.username}"
+                                                                     title="#{bundle.CreateUserTitle_username}"
+                                                                     required="true"
+                                                                     requiredMessage="#{bundle.CreateUserRequiredMessage_username}"/>
+                                                    </div>
+                                                </div>
 
-                                        <div class="col-10 offset-1">
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Contraseña"/>
-                                            </div>
-                                        </div>
+                                                <div class="col-10 offset-1">
+                                                    <div class="form-group">
+                                                        <h:outputLabel value="#{bundle.CreateUserLabel_password}"
+                                                                       for="password"/>
+                                                        <h:inputSecret id="password"
+                                                                       class="form-control"
+                                                                       value="#{userController.selected.password}"
+                                                                       title="#{bundle.CreateUserTitle_password}"
+                                                                       required="true"
+                                                                       requiredMessage="#{bundle.CreateUserRequiredMessage_password}"/>
+                                                    </div>
+                                                </div>
 
-                                        <div class="col-10 offset-1">
-                                            <h:form styleClass="jsfcrud_list_form">
-                                                <button class="btn btn-success btn-block">Continuar</button>
+                                                <div class="col-10 offset-1">
 
-                                                <h:commandLink
-                                                    class="btn btn-primary btn-block mt-2"
-                                                    action="#{userController.prepareCreate}"
-                                                    value="#{bundle.ListUserCreateLink}"/>
-                                                <!--                                            <button class="btn btn-primary btn-block">Registrarse</button>-->
+                                                    <h:commandLink
+                                                            class="btn btn-success btn-block mt-2"
+                                                            action="#{userController.Login}"
+                                                            value="Entrar"/>
+
+                                                    <h:commandLink
+                                                        class="btn btn-primary btn-block mt-2"
+                                                        action="#{userController.prepareCreate}"
+                                                        value="#{bundle.ListUserCreateLink}"/>
+                                                </div>
                                             </h:form>
 
                                             <br/>
                                             <h:link outcome="/crud/assistance/List" value="Show All Assistance Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/day/List" value="Show All Day Items"/>
                                             <br/>
                                             <h:link outcome="/crud/delivery/List" value="Show All Delivery Items"/>
                                             <br/>
@@ -59,8 +82,6 @@
                                             <h:link outcome="/crud/permission/List" value="Show All Permission Items"/>
                                             <br/>
                                             <h:link outcome="/crud/rol/List" value="Show All Rol Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/user/List" value="Show All User Items"/>
                                             <br/>
                                             <h:link outcome="/crud/userHasGroup/List" value="Show All UserHasGroup Items"/>
                                             <br/>

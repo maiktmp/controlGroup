@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Group.findAll", query = "SELECT g FROM Group g")
+        , @NamedQuery(name = "Group.findAllByUser", query = "SELECT g FROM Group g WHERE g.id IN (SELECT u.fkIdGroup.id FROM UserHasGroup u WHERE u.fkIdUser.id = :userId)")
     , @NamedQuery(name = "Group.findById", query = "SELECT g FROM Group g WHERE g.id = :id")
     , @NamedQuery(name = "Group.findByName", query = "SELECT g FROM Group g WHERE g.name = :name")
     , @NamedQuery(name = "Group.findByStartHour", query = "SELECT g FROM Group g WHERE g.startHour = :startHour")

@@ -5,10 +5,13 @@
  */
 package com.controller;
 
+import com.entities.User;
 import com.entities.Work;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,12 @@ public class WorkFacade extends AbstractFacade<Work> {
         super(Work.class);
     }
     
+    
+    public List<Work> findByGroup(String groupId, int[] range) {
+        Query q = this.getEntityManager().createNamedQuery("Work.findAllByGroup");
+        q.setParameter("groupId", Integer.parseInt(groupId));
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
 }
