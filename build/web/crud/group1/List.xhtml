@@ -78,17 +78,9 @@
                                                                     <h:outputText value="&nbsp;"/>
                                                                 </f:facet>
                                                                 <c:if test = "${session.getAttribute('USER').fkIdRol.id == 1}">
-                                                                    <h:commandLink action="#{group1Controller.prepareView}"
-                                                                                   value="#{bundle.ListGroup1ViewLink}"/>
-                                                                    <h:outputText value=" "/>
                                                                     <h:commandLink action="#{group1Controller.prepareEdit}"
                                                                                    value="#{bundle.ListGroup1EditLink}"/>
-                                                                    <h:outputText value=" "/>
-                                                                    <h:commandLink action="#{group1Controller.destroy}"
-                                                                                   value="#{bundle.ListGroup1DestroyLink}"/>
                                                                 </c:if>
-
-
 
                                                                 <c:if test = "${session.getAttribute('USER').fkIdRol.id == 2}">
                                                                     <h:commandLink action="/crud/work/List"
@@ -100,13 +92,6 @@
                                                         </h:dataTable>
                                                     </h:panelGroup>
                                                     <br/>
-                                                    <c:if test = "${session.getAttribute('USER').fkIdRol.id == 1}">
-                                                        <h:commandLink
-                                                            class="btn-create"
-                                                            action="#{group1Controller.prepareCreate}"
-                                                            value="+"/>
-                                                    </c:if>
-
                                                 </h:form>
                                             </div>
                                         </div>
@@ -122,4 +107,7 @@
 
 
     <h:link outcome="/index" value="#{bundle.ListGroup1IndexLink}"/>
+    <h:commandLink action="#{group1Controller.prepareView}" value="#{bundle.ListGroup1ViewLink}"/>
+    <h:commandLink action="#{group1Controller.destroy}"
+                   value="#{bundle.ListGroup1DestroyLink}"/>
 </html>

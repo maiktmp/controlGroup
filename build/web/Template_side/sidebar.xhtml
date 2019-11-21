@@ -6,31 +6,37 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:body>
         <div id="sidebar">
-            <ul class="nav flex-column">
-                <li class="nav-item active">
-                    <h:link class="nav-link" outcome="/crud/group1/List" value="Grupos"/>
-                </li>
-                
-                
+            <ul class="nav flex-column"> 
                 <c:if test = "${session.getAttribute('USER').fkIdRol.id == 1}">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle"
                            data-toggle="dropdown"
                            href="#" role="button"
                            aria-haspopup="true"
-                           aria-expanded="false"> <i class="fas fa-users"></i> Grupos </a>
+                           aria-expanded="false">  Grupos <i class="fas fa-users"></i></a>
                         <div class="dropdown-menu">
                             <h:link class="dropdown-item" outcome="/crud/group1/List" value="Grupos asignados"/>
                             <h:link class="dropdown-item" outcome="/crud/workSpace/List" value="Carpetas de trabajo"/>
-                            <h:link class="dropdown-item" outcome="/crud/groupHasDay/List" value="Horarios"/>
+                            <!-- <h:link class="dropdown-item" outcome="/crud/groupHasDay/List" value="Horarios"/>-->
                             <h:link class="dropdown-item" outcome="/crud/work/List" value="Tareas"/>
                             <h:link class="dropdown-item" outcome="/crud/delivery/List" value="Entrega de tareas"/>
                         </div>
-                    </li>             
+                    </li>      
+
+                    <li class="nav-item active">
+                        <h:link class="nav-link" outcome="/crud/delivery/List" value="Tareas">
+                            <i class="fas fa-book"></i>
+                        </h:link> 
+                    </li>
                 </c:if>
 
                 <c:if test = "${session.getAttribute('USER').fkIdRol.id == 2}">
-                           
+                    <li class="nav-item active">
+
+                        <h:link class="nav-link" outcome="/crud/group1/List" value="Grupos">
+                            <i class="fas fa-users"></i> 
+                        </h:link>
+                    </li>
                 </c:if>
             </ul>
         </div>

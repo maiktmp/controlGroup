@@ -1,98 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-<ui:composition template="/Template/templateMain.xhtml">
-    <ui:define name="title">
-        <h:outputText value="#{bundle.CreateDeliveryTitle}"></h:outputText>
-    </ui:define>
-    <ui:define name="content">
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-                <div class="col-4 offset-4 d-flex align-items-center h-100">
-                    <div class="card w-100 bg-dark">
-                        <div class="row">
-                            <div class="col-12">
-                                <h:panelGroup id="messagePanel" layout="block">
-                                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                                </h:panelGroup>
-                            </div>
-                            <div class="col-12">
-                                <h:form>
-                                    <div class="row">
-                                        <div class="col-12">
-
-                                            <div class="form-group">
-                                                <h:inputText id="description"
-                                                             value="#{deliveryController.selected.description}"
-                                                             title="#{bundle.CreateDeliveryTitle_description}"
-                                                             required="true"
-                                                             class="form-control"
-                                                             requiredMessage="#{bundle.CreateDeliveryRequiredMessage_description}"/>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <h:inputText id="value"
-                                                             class="form-control"
-                                                             value="#{deliveryController.selected.value}"
-                                                             title="#{bundle.CreateDeliveryTitle_value}"/>
-                                            </div>
-                                            <div class="form-group">
-
-                                                <h:inputTextarea rows="4" cols="30"
-                                                                 id="fileUrl"
-                                                                 class="form-control"
-                                                                 value="#{deliveryController.selected.fileUrl}"
-                                                                 title="#{bundle.CreateDeliveryTitle_fileUrl}"/>
-                                            </div>
-                                            <div class="form-group">
-
-                                                <h:selectOneMenu id="fkIdUserHasGroup"
-                                                                 class="form-control"
-                                                                 value="#{deliveryController.selected.fkIdUserHasGroup}"
-                                                                 title="#{bundle.CreateDeliveryTitle_fkIdUserHasGroup}"
-                                                                 required="true"
-                                                                 requiredMessage="#{bundle.CreateDeliveryRequiredMessage_fkIdUserHasGroup}">
-                                                    <f:selectItems
-                                                            value="#{userHasGroupController.itemsAvailableSelectOne}"/>
-                                                </h:selectOneMenu>
-                                            </div>
-                                            <div class="form-group">
-                                                <h:selectOneMenu id="fkIdWork"
-                                                                 class="form-control"
-                                                                 value="#{deliveryController.selected.fkIdWork}"
-                                                                 title="#{bundle.CreateDeliveryTitle_fkIdWork}"
-                                                                 required="true"
-                                                                 requiredMessage="#{bundle.CreateDeliveryRequiredMessage_fkIdWork}">
-                                                    <f:selectItems value="#{workController.itemsAvailableSelectOne}"/>
-                                                </h:selectOneMenu>
-                                            </div>
-
-                                            <br/>
-                                            <h:commandLink action="#{deliveryController.create}"
-                                                           value="#{bundle.CreateDeliverySaveLink}"/>
-                                            <br/>
-                                            <br/>
-                                            <h:commandLink action="#{deliveryController.prepareList}"
-                                                           value="#{bundle.CreateDeliveryShowAllLink}"
-                                                           immediate="true"/>
-                                            <br/>
-                                            <br/>
-                                            <h:link outcome="/index" value="#{bundle.CreateDeliveryIndexLink}"/>
+    <ui:composition template="/Template/templateMain.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDeliveryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <div class="container-fluid py-2">
+                <div class="row">
+                    <div class="col-4 offset-4">
+                        <div class="card bg-dark my-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="alert ">
+                                            <h:panelGroup id="messagePanel" layout="block">
+                                                <h:messages errorStyle="color: red" infoStyle="color: green"
+                                                            layout="table"/>
+                                            </h:panelGroup>
                                         </div>
+                                        <h:form enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <h:inputFile value="#{deliveryController.file}"></h:inputFile>
+                                                    </div>
+                                                    <div class="form-group">
+
+                                                        <h:inputText id="description"
+                                                                     value="#{deliveryController.selected.description}"
+                                                                     title="#{bundle.CreateDeliveryTitle_description}"
+                                                                     required="true"
+                                                                     pt:placeholder="Agrega un mensaje"
+                                                                     class="form-control"
+                                                                     requiredMessage="#{bundle.CreateDeliveryRequiredMessage_description}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:selectOneMenu  id="fkIdWork" 
+                                                                          class="form-control"
+                                                                          value="#{deliveryController.selected.fkIdWork}"
+                                                                          title="#{bundle.CreateDeliveryTitle_fkIdWork}"
+                                                                          required="true"
+                                                                          disabled ="true"
+                                                                          requiredMessage="#{bundle.CreateDeliveryRequiredMessage_fkIdWork}">
+                                                            <f:selectItems value="#{workController.itemsAvailableSelectOne}"/>
+                                                        </h:selectOneMenu>
+                                                    </div>
+
+                                                    <br/>
+                                                    <div class="col-12 text-center">
+                                                        <h:commandLink 
+                                                            class="btn btn-success"
+                                                            action="#{deliveryController.create}"
+                                                            value="Realizar entrega"/>
+
+                                                        <br/>
+                                                        <br/>   
+                                                        <h:commandLink action="/crud/work/List"
+                                                                       value="Regresar">
+                                                            <f:param name="groupId" value="#{deliveryController.selected.fkIdWork.fkIdWorkSpace.fkIdGroup.id}"></f:param>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:form>
                                     </div>
-                                </h:form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </ui:define>
-</ui:composition>
-
+        </ui:define>
+    </ui:composition>
+    <br/>
+    <br/>
+    <h:commandLink action="#{deliveryController.prepareList}"
+                   value="#{bundle.CreateDeliveryShowAllLink}"
+                   immediate="true"/>
+    <br/>
+    <br/>
+    <h:link outcome="/index" value="#{bundle.CreateDeliveryIndexLink}"/>
 </html>

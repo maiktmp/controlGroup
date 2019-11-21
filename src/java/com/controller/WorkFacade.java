@@ -31,8 +31,7 @@ public class WorkFacade extends AbstractFacade<Work> {
     public WorkFacade() {
         super(Work.class);
     }
-    
-    
+
     public List<Work> findByGroup(String groupId, int[] range) {
         Query q = this.getEntityManager().createNamedQuery("Work.findAllByGroup");
         q.setParameter("groupId", Integer.parseInt(groupId));

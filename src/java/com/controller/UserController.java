@@ -4,14 +4,17 @@ import com.entities.User;
 import com.controller.util.JsfUtil;
 import com.controller.util.PaginationHelper;
 import com.entities.Rol;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.NavigationHandler;
 import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpSession;
 
 @Named("userController")
 @SessionScoped
+@ManagedBean
 public class UserController implements Serializable {
 
     private User current;
@@ -219,6 +223,36 @@ public class UserController implements Serializable {
 
     public User getUser(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+
+    public void checkSession() {
+        try {
+            if (User.getSession().getAttribute("USER") == null) {
+
+                FacesContext
+                        .getCurrentInstance()
+                        .getExternalContext()
+                        .redirect("/controlGroup/faces/index.xhtml");
+            }
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void forbiddenSession() {
+        try {
+            if (User.getSession().getAttribute("USER") != null) {
+                User.getSession().setAttribute("USER", null);
+                User.getSession().invalidate();
+            }
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect("/controlGroup/faces/index.xhtml");
+            
+        } catch (IOException e) {
+                System.out.println(e.getMessage());
+        }
     }
 
     @FacesConverter(forClass = User.class)

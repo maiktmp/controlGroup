@@ -181,7 +181,7 @@ public class Work implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entities.Work[ id=" + id + " ]";
+        return name + " | "+getFkIdWorkSpace().getFkIdGroup().getName();
     }
     
 }

@@ -62,7 +62,7 @@ thead {
     width: 50px;
     height: 50px;
     background-color: #409C5C;
-    color: white;
+    color: white !important;
     font-size: 2em;
     border-radius: 50%;
     align-items: center;
@@ -75,7 +75,22 @@ thead {
 }
 
 
-.btn-create:hover{
-    color: white;
+.btn:hover{
+    color: white !important;
     text-decoration: none!important;
 }
+.btn{
+    color: white !important;
+}
+.jsfcrud_list_form{
+    color: white !important;
+}
+
+a{
+    color:#409C5C !important;
+}
+
+a:hover{
+    color:#ff507d !important;
+}
+

@@ -57,12 +57,14 @@
                                                 </div>
 
                                                 <div class="col-10 offset-1">
-
                                                     <h:commandLink
-                                                            class="btn btn-success btn-block mt-2"
-                                                            action="#{userController.Login}"
-                                                            value="Entrar"/>
-
+                                                        class="btn btn-success btn-block mt-2"
+                                                        action="#{userController.Login}"
+                                                        value="Entrar"/>
+                                                </div>
+                                            </h:form>
+                                            <h:form>
+                                                <div class="col-10 offset-1">
                                                     <h:commandLink
                                                         class="btn btn-primary btn-block mt-2"
                                                         action="#{userController.prepareCreate}"
@@ -71,23 +73,27 @@
                                             </h:form>
 
                                             <br/>
-                                            <h:link outcome="/crud/assistance/List" value="Show All Assistance Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/delivery/List" value="Show All Delivery Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/group1/List" value="Show All Group1 Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/groupHasDay/List" value="Show All GroupHasDay Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/permission/List" value="Show All Permission Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/rol/List" value="Show All Rol Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/userHasGroup/List" value="Show All UserHasGroup Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/work/List" value="Show All Work Items"/>
-                                            <br/>
-                                            <h:link outcome="/crud/workSpace/List" value="Show All WorkSpace Items"/>
+                                            
+                                              <!-- 
+                                                <h:link outcome="/crud/assistance/List" value="Show All Assistance Items"/>
+                                                <br/>
+                                                <h:link outcome="/crud/delivery/List" value="Show All Delivery Items"/>
+                                                <br/>
+                                                <h:link outcome="/crud/group1/List" value="Show All Group1 Items"/>
+                                                <br/>
+                                                <h:link outcome="/crud/groupHasDay/List" value="Show All GroupHasDay Items"/>
+                                                <br/>
+                                                <h:link outcome="/crud/permission/List" value="Show All Permission Items"/>
+                                                <br/>
+                                                <h:link outcome="/crud/rol/List" value="Show All Rol Items"/>
+                                                <br/>
+                                                <h:link outcome="/crud/userHasGroup/List" value="Show All UserHasGroup Items"/>
+                                                <br/>
+                                                <h:link outcome="/crud/work/List" value="Show All Work Items"/>
+                                                <br/>
+                                                <h:link outcome="/crud/workSpace/List" value="Show All WorkSpace Items"/>
+
+                                            -->
                                         </div>
                                     </div>
                                 </div>

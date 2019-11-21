@@ -3,6 +3,7 @@ package com.controller;
 import com.entities.Work;
 import com.controller.util.JsfUtil;
 import com.controller.util.PaginationHelper;
+import com.entities.User;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -51,6 +52,7 @@ public class WorkController implements Serializable {
         String groupId = request.getParameter("groupId");
         if (groupId != null) {
             pagination = null;
+            User.getSession().setAttribute("GROUP_ID", groupId);
         }
         if (pagination == null) {
             pagination = new PaginationHelper(10) {

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "UserHasGroup.findAll", query = "SELECT u FROM UserHasGroup u")
     , @NamedQuery(name = "UserHasGroup.findById", query = "SELECT u FROM UserHasGroup u WHERE u.id = :id")
+    , @NamedQuery(name = "UserHasGroup.findByUserGroup", query = "SELECT u FROM UserHasGroup u WHERE u.fkIdGroup.id = :groupId AND u.fkIdUser.id = :userId")
     , @NamedQuery(name = "UserHasGroup.findByCreatedAt", query = "SELECT u FROM UserHasGroup u WHERE u.createdAt = :createdAt")
     , @NamedQuery(name = "UserHasGroup.findByUpdatedAt", query = "SELECT u FROM UserHasGroup u WHERE u.updatedAt = :updatedAt")})
 public class UserHasGroup implements Serializable {
