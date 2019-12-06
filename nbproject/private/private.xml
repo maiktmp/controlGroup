@@ -3,25 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/entities/Delivery.java</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/controller/UserController.java</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/crud/group1/Edit.xhtml</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/entities/Group.java</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/Template_side/sidebar.xhtml</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/crud/group1/Create.xhtml</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/crud/user/List.xhtml</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/crud/work/Create.xhtml</file>
             <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/controller/DeliveryController.java</file>
+            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/controller/UserController.java</file>
             <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/controller/DeliveryFacade.java</file>
             <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/controller/Group1Controller.java</file>
             <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/crud/delivery/List.xhtml</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/entities/Work.java</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/controller/WorkController.java</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/entities/User.java</file>
+            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/crud/work/List.xhtml</file>
             <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/index.xhtml</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/web/crud/delivery/Create.xhtml</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/controller/WorkFacade.java</file>
-            <file>file:/C:/Users/presa/Documents/NetBeansProjects/ControlGroup/controlGroup/src/java/com/entities/UserHasGroup.java</file>
         </group>
     </open-files>
 </project-private>

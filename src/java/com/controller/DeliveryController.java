@@ -3,9 +3,11 @@ package com.controller;
 import com.entities.Delivery;
 import com.controller.util.JsfUtil;
 import com.controller.util.PaginationHelper;
+import com.entities.User;
 import com.entities.UserHasGroup;
 import com.entities.Work;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +35,7 @@ import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 @Named("deliveryController")
@@ -73,14 +76,23 @@ public class DeliveryController implements Serializable {
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
+                FacesContext context = FacesContext.getCurrentInstance();
+                ExternalContext ec = context.getExternalContext();
+                HttpSession session = (HttpSession) ec.getSession(false);
 
                 @Override
                 public int getItemsCount() {
+                    if (((User) session.getAttribute("USER")).getFkIdRol().getId() == 2) {
+                        return getFacade().listByUser(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}).size();
+                    }
                     return getFacade().count();
                 }
 
                 @Override
                 public DataModel createPageDataModel() {
+                    if (((User)session.getAttribute("USER")).getFkIdRol().getId() == 2){
+                        return new ListDataModel(getFacade().listByUser(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));           
+                    }
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
@@ -105,10 +117,10 @@ public class DeliveryController implements Serializable {
         String workId = request.getParameter("workId");
 
         List<UserHasGroup> list = getFacade().findByGroupUser();
-        if (!list.get(0).getDeliveryCollection().isEmpty()) {
-            JsfUtil.addErrorMessage("Ya entrego la asignación");
-            return null;
-        }
+//        if (!list.get(0).getDeliveryCollection().isEmpty()) {
+//            JsfUtil.addErrorMessage("Ya entrego la asignación");
+//            return null;
+//        }
 
         List<Work> works = getFacade().findById(workId);
         Work work = works.get(0);
@@ -155,27 +167,48 @@ public class DeliveryController implements Serializable {
 
     public void downloadFile(String path) throws IOException {
         // Get the FacesContext
-        FacesContext fc = FacesContext.getCurrentInstance();
-        ExternalContext ec = fc.getExternalContext();
-
-        File file = new File(path);
-        String fileName = file.getName();
-        String contentType = ec.getMimeType(fileName); // JSF 1.x: ((ServletContext) ec.getContext()).getMimeType(fileName);
-        int contentLength = (int) file.length();
-
-        // seta cabeçalhos http
-        ec.responseReset(); // limpa qualquer possível sujeira feita por algum filtro ou componente
-        ec.setResponseContentType(contentType); // tipo do conteúdo, como "application/pdf" por exemplo
-        ec.setResponseContentLength(contentLength); // opcional. ajuda o browser com a barra de progresso
-        ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\""); // diz pro navegador para fazer download (attachment) em vez de renderizar diretamente na página (inline)
         try {
-            // escreve arquivo no fluxo de saida
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ExternalContext ec = fc.getExternalContext();
+
+            File file = new File(path);
+            String fileName = file.getName();
+            String contentType = ec.getMimeType(fileName);
+            int contentLength = (int) file.length();
+
+            ec.responseReset();
+            ec.setResponseContentType(contentType);
+            ec.setResponseContentLength(contentLength);
+            ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
             OutputStream output = ec.getResponseOutputStream();
+            InputStream targetStream = new FileInputStream(file);
+
+            int count = 0;
+            byte[] bytes = new byte[1024];
+            while ((count = targetStream.read(bytes)) != -1) {
+                output.write(bytes, 0, count);
+            }
+            targetStream.close();
+            output.flush();
+            output.close();
+
+            fc.responseComplete();
         } catch (IOException ex) {
             Logger.getLogger(DeliveryController.class.getName()).log(Level.SEVERE, null, ex);
         }
         // finaliza ciclo de vida
-        fc.responseComplete(); // importante! Se você esquecer isso o jsf tentará escrever o response também e um erro ocorrerá
+    }
+
+    public void processRate() {
+
+    }
+
+    public void setRate(Delivery object) {
+        try {
+            getFacade().edit(object);
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
     }
 
     public String prepareEdit() {

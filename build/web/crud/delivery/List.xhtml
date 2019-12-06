@@ -4,7 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
 
     <ui:composition template="/Template_side/templateMain.xhtml">
         <ui:define name="title">
@@ -37,6 +40,7 @@
                                                                    value="#{bundle.Next} #{deliveryController.pagination.pageSize}"
                                                                    rendered="#{deliveryController.pagination.hasNextPage}"/>&nbsp;
                                                     <h:dataTable
+                                                        id="myDataTable" 
                                                         class="table table-stripped table-dark table-bordered table-hover table-sm"
                                                         value="#{deliveryController.items}" var="item" border="0"
                                                         cellpadding="2" cellspacing="0"
@@ -59,7 +63,7 @@
                                                             <f:facet name="header">
                                                                 <h:outputText value="#{bundle.ListDeliveryTitle_value}"/>
                                                             </f:facet>
-                                                            <h:outputText value="#{item.value}"/>
+                                                            <h:outputText value="#{item.fkIdWork.value}"/>
                                                         </h:column>
                                                         <h:column>
                                                             <f:facet name="header">
@@ -92,10 +96,32 @@
                                                         </h:column>
                                                         <h:column>
                                                             <f:facet name="header">
+                                                                <h:outputText value="Puntuación"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{item.value}"/>
+                                                        </h:column>
+                                                        <c:if test = "${session.getAttribute('USER').fkIdRol.id == 1}">
+                                                            <h:column>
+                                                                <div class="d-flex align-items-center justify-content-center ">
+                                                                    <f:facet name="header">
+                                                                        <h:outputText value="Puntuación"/>
+                                                                    </f:facet>
+                                                                    <p:inputText id="rate" value="#{item.value}" style="width: 100px" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));">
+                                                                        <f:ajax event="keyup" listener="#{deliveryController.setRate(item)}"/>
+                                                                    </p:inputText>
+                                                                    <h:commandButton  class="btn btn-success mx-1" value="Ok">
+                                                                        <f:ajax  render="@form"/>
+                                                                    </h:commandButton>
+                                                                </div>
+                                                            </h:column>
+                                                        </c:if>   
+                                                        <c:if test = "${session.getAttribute('USER').fkIdRol.id == 2}">
+                                                       
+                                                        </c:if>   
+                                                        <h:column>
+                                                            <f:facet name="header">
                                                                 <h:outputText value="&nbsp;"/>
                                                             </f:facet>
-
-
                                                         </h:column>
                                                     </h:dataTable>
                                                 </h:panelGroup>
@@ -127,6 +153,6 @@
 
     <h:link outcome="/index" value="#{bundle.ListDeliveryIndexLink}"/>
 
-    
+
 
 </html>

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Delivery.findAll", query = "SELECT d FROM Delivery d")
     , @NamedQuery(name = "Delivery.findById", query = "SELECT d FROM Delivery d WHERE d.id = :id")
+    , @NamedQuery(name = "Delivery.findByUser", query = "SELECT d FROM Delivery d WHERE d.fkIdUserHasGroup.fkIdUser.id = :userId")
     , @NamedQuery(name = "Delivery.findByDescription", query = "SELECT d FROM Delivery d WHERE d.description = :description")
     , @NamedQuery(name = "Delivery.findByValue", query = "SELECT d FROM Delivery d WHERE d.value = :value")
     , @NamedQuery(name = "Delivery.findByCreatedAt", query = "SELECT d FROM Delivery d WHERE d.createdAt = :createdAt")})
